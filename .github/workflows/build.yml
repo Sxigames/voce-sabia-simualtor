@@ -25,6 +25,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
             files: target/Voce Sabia SimulatorSetup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +45,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
             files: target/Voce Sabia Simulator.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build-mac:
     runs-on: macos-latest
     steps:
@@ -58,5 +62,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
             files: target/Voce Sabia Simulator.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       
