@@ -1,0 +1,59 @@
+# This is a basic workflow that is manually triggered
+
+name: Build
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  push:
+    tags: v*.*.*
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+      - run: fbs freeze
+      - run: fbs installer
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+            files: target/Voce Sabia SimulatorSetup.exe
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+      - uses: fortran-lang/setup-fpm@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: fbs freeze
+      - run: fbs installer
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+            files: target/Voce Sabia Simulator.deb
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+      - run: fbs freeze
+      - run: fbs installer
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+            files: target/Voce Sabia Simulator.dmg
+    
+      
