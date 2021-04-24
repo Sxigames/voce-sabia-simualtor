@@ -7,7 +7,9 @@ import sys
 import pypresence
 appctxt = ApplicationContext()
 
+
 presence = pypresence.Presence("816430658020311091")
+
 
 
 class Janela(QMainWindow):
@@ -35,6 +37,8 @@ class Janela(QMainWindow):
         self.Minimizar.clicked.connect(lambda: self.hide())
         self.show()
 
+
+
     def mousePressEvent(self, event):
         self.oldPos = event.globalPos()
 
@@ -43,17 +47,15 @@ class Janela(QMainWindow):
         self.move(self.x() + delta.x(), self.y() + delta.y())
         self.oldPos = event.globalPos()
 
-    presence.connect()
-    presence.update(state="Puxando a vinheta", large_image='danielmolo', large_text="Daniel Molo",
-                        small_image='lucasmarques', small_text='Lucas Marques',
-                        buttons=[{"label": "Puxar A vinheta", "url": "https://youtu.be/ZOflhzJGNIM/"},
-                                 {"label": "Esperar", "url": "https://youtu.be/d4e0SBbmBUs"}])
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    presence.connect()
+    presence.update(state="Puxando a vinheta", large_image='danielmolo', large_text="Daniel Molo",
+                    small_image='lucasmarques', small_text='Lucas Marques',
+                    buttons=[{"label": "Puxar A vinheta", "url": "https://youtu.be/ZOflhzJGNIM/"},
+                             {"label": "Esperar", "url": "https://youtu.be/d4e0SBbmBUs"}])
     ex = Janela()
-    presence.close()
     exit_code = appctxt.app.exec_()
     sys.exit(exit_code)
 
