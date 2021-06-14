@@ -54,7 +54,7 @@ if __name__ == '__main__':
     presence.update(state="Puxando a vinheta", large_image='danielmolo', large_text="Daniel Molo",
                     small_image='lucasmarques', small_text='Lucas Marques',
                     buttons=[{"label": "Puxar A vinheta", "url": "https://youtu.be/ZOflhzJGNIM/"},
-                             {"label": "Esperar", "url": "https://youtu.be/d4e0SBbmBUs"}])
+                             {"label": "Esperar", "url": "https://youtu.be/wbSLqaRzKW0"}])
     ex = Janela()
     exit_code = appctxt.app.exec_()
     sys.exit(exit_code)
